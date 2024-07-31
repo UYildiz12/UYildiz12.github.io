@@ -1,0 +1,17 @@
+# Site settings
+title: umuryildiz
+description: Neuroscience & Machine Learning blog
+vasurl: https://uyildiz.github.io
+# User settings
+username: uyildiz
+user_description: Software Developer
+user_title: Software Developer
+email: umuryildiz_@outlook.com
+twitter_username: Iudaincarnate
+github_username:  Uyildiz12
+
+# Google-analytics
+google-analytics:
+  id: ""
+
+exclude: ['package.json', 'src' , 'node_modules']
