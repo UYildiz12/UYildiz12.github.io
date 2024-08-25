@@ -1,0 +1,19 @@
+{
+  "links": [
+    {
+      "title": "Twitter",
+      "icon": "fa-twitter",
+      "url": "https://x.com/Iudaincarnate"
+    },
+    {
+      "title": "GitHub",
+      "icon": "fa-github",
+      "url": "https://github.com/UYildiz12"
+    },
+    {
+      "title": "LinkedIn",
+      "icon": "fa-linkedin",
+      "url": "https://www.linkedin.com/in/umuryildiz/"
+    }
+  ]
+}

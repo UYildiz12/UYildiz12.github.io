@@ -274,6 +274,8 @@ DEPENDENCIES
   github-pages
   jekyll
   jekyll-github-metadata
+  jekyll-paginate
+  jekyll-sitemap
   webrick (~> 1.8)
 
 BUNDLED WITH
