@@ -5,8 +5,8 @@
         <description>Personal Site</description>
         <link>http://localhost:4000/</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 26 Aug 2024 10:47:53 +0300</pubDate>
-        <lastBuildDate>Mon, 26 Aug 2024 10:47:53 +0300</lastBuildDate>
+        <pubDate>Mon, 26 Aug 2024 10:54:04 +0300</pubDate>
+        <lastBuildDate>Mon, 26 Aug 2024 10:54:04 +0300</lastBuildDate>
         <generator>Jekyll v3.9.5</generator>
         
             <item>
@@ -41,6 +41,43 @@
                 
                 <category>Psychology</category>
                 
+                
+            </item>
+        
+            <item>
+                <title>Why to (or not to) study Psychology</title>
+                <description>&lt;p&gt;As the admissions period in Türkiye draws to a close, I would like to share my own 2 cents on the appeals and shortcomings of the field of psychology and of psychology education, drawing from my own four years at one of the country’s elite universities.&lt;/p&gt;
+
+&lt;h2 id=&quot;dont-expect-answers-ye-who-enter-here&quot;&gt;Don’t expect answers ye who enter here&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Psychology focuses on the most important topic there is: Us. - Paul Bloom&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It’s not hard to see the appeal of psychological sciences. Maybe you’d like to discover the intricacies of the brain, make friends and influence people, decode and use your dreams to understand human nature in a deeper way, or maybe you’re struggling and just want to become less troubled. It’s not unreasonable to think that the psychological sciences would hold the answers to your questions, and the truth is, they somewhat do. There is more research being done in the field than ever before, focusing on an incredibly wide range of questions. This is all great, of course, but the yields of psychological research don’t always have the certainty the word “answer” is associated with. In fact, you might find yourself swimming in a sea of studies, each with their own nuanced findings, often contradicting one another, leaving you with more questions than answers. You might even begin to feel like you’re piecing together a puzzle where the pieces don’t quite fit, a frustrating exercise in academic whack-a-mole where for every theory you pin down, two more pop up in its place. And just when you think you’ve grasped the complexities of, say, the impact of social media on adolescent development, you’ll stumble upon a dozen studies offering conflicting conclusions, each with their own methodological problems, assumptions and limitations.&lt;/p&gt;
+
+&lt;p&gt;Of course again, this is what science is. Conflicting studies and opinions are a natural part of the process but Psychology doesn’t have great ways to settle these debates. A major cause of this is that psychology deals with complex systems maybe even &lt;em&gt;too complex&lt;/em&gt;. The human mind, is a dynamic and ever-changing system, influenced by a myriad of factors, both internal and external and we don’t have a lot of great ways to study it. It’s chaotic. Neurons firing, hormones surging, and visions and memories from past shaping our perceptions and behaviors. Ultimately psychology often finds itself grappling with messy, multifaceted phenomena that defy easy categorization. This however, isn’t to say that the pursuit of psychological knowledge is futile. There are undoubtedly valuable insights that come from the field, but perhaps we need to temper our expectations and acknowledge that the neat, definitive answers we seek may be elusive in isolation.&lt;/p&gt;
+
+&lt;p&gt;This maybe is best represented by the replication crisis. In 2015, the Reproducibility Project: Psychology, a large-scale collaborative effort, attempted to replicate 100 studies published in top psychology journals. The results were alarming, with only around 40% of the studies successfully replicated. This, however, isn’t psychology’s first dance with problematic research practices biting back. The field has a history of grappling with methodological issues and questionable research practices, dating back to the early days of social psychology in the mid-20th century. From the methodological limitations of influential studies like the Milgram obedience experiments and the Stanford Prison Experiment to the more recent controversies surrounding priming effects and implicit bias, psychology has consistently faced challenges in ensuring the replicability and generalizability of its findings. These recurring struggles underscore the ongoing need for critical self-reflection and a continued push towards greater methodological rigor within the field.&lt;/p&gt;
+
+&lt;h2 id=&quot;psychology-does-not-need-psychologists&quot;&gt;Psychology does not need psychologists&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Psychology has made a lot less progress than it could have because too many psychologists know too little about other animals - Steve Stewart Williams&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When considering the failings of psychology, it’s easy to feel disheartened, especially given the field’s history and the perceived lack of significant findings in recent decades. However, this isn’t a hopeless situation, nor is it a signal of impending doom for the discipline. Instead, it suggests that change is necessary, and this change should start with how we educate future psychologists. Psychology students should be encouraged to adopt a more interdisciplinary approach, integrating insights from fields like physics, neuroscience, biology, computer science, and even philosophy. By broadening their perspectives and learning from other disciplines, students can develop a more holistic understanding of the mind and behavior, enabling them to tackle complex psychological questions with greater depth and nuance. If psychology is the study of something as deeply complex as human behavior, we must train young scientists to approach it with broad, interdisciplinary perspectives.&lt;/p&gt;
+
+&lt;p&gt;So if you are considering psychology as your major, if you want answers to your questions, do study psychology, but I would also greatly encourage you to take a step back and explore other fields. Immerse yourself in biology, delve into neuroscience, grapple with philosophy, and embrace the logic of computer science. Don’t limit yourself to the traditional boundaries of psychology. By forging connections between disciplines, you will be better equipped to contribute meaningfully to the future of psychological understanding. While psychology has faced challenges in providing definitive answers and has, at times, repeated past mistakes, but then again maybe that’s all about to change.&lt;/p&gt;
+</description>
+                <pubDate>Sat, 24 Aug 2024 00:00:00 +0300</pubDate>
+                <link>http://localhost:4000/Why-to-(or-not-to)-study-psychology</link>
+                <guid isPermaLink="true">http://localhost:4000/Why-to-(or-not-to)-study-psychology</guid>
+                
+                <category>Psychology</category>
+                
+                
+                <category>Uyildiz12.github.io</category>
                 
             </item>
         
