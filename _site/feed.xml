@@ -5,41 +5,106 @@
         <description>Personal Site</description>
         <link>http://localhost:4000/</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 26 Aug 2024 10:54:04 +0300</pubDate>
-        <lastBuildDate>Mon, 26 Aug 2024 10:54:04 +0300</lastBuildDate>
+        <pubDate>Thu, 05 Sep 2024 20:23:42 +0300</pubDate>
+        <lastBuildDate>Thu, 05 Sep 2024 20:23:42 +0300</lastBuildDate>
         <generator>Jekyll v3.9.5</generator>
         
             <item>
-                <title>Why to (or not to) study Psychology</title>
-                <description>&lt;p&gt;As the admissions period in Türkiye draws to a close, I would like to share my own 2 cents on the appeals and shortcomings of the field of psychology and of psychology education, drawing from my own four years at one of the country’s elite universities.&lt;/p&gt;
+                <title>QLoRA and RAG Case Study on PsychoPy with Gemma 2 27B</title>
+                <description>&lt;p&gt;For the last 2 weeks, I’ve been trying to gather and synthetically generate data to use in fine-tuning and implementing RAG on a series of Google’s open-source Gemma models for PsychoPy. Having successfully curated relatively high-quality data, I’m excited to share my findings in this case study.&lt;/p&gt;
 
-&lt;h2 id=&quot;dont-expect-answers-ye-who-enter-here&quot;&gt;Don’t expect answers ye who enter here&lt;/h2&gt;
+&lt;h1 id=&quot;code-generation-and-debugging&quot;&gt;Code Generation and Debugging&lt;/h1&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Psychology focuses on the most important topic there is: Us. - Paul Bloom&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;A common problem, which I’ve experienced and heard from others, is that even flagship LLMs struggle with low-shot, accurate code generation for psychological experiments. This issue extends to automatic code completion tools like Copilot and Cursor. One feasible solution I found is to fine-tune a capable open-source model with QLoRA for our very specific task of generating psychology experiments.&lt;/p&gt;
 
-&lt;p&gt;It’s not hard to see the appeal of psychological sciences. Maybe you’d like to discover the intricacies of the brain, make friends and influence people, decode and use your dreams to understand human nature in a deeper way, or maybe you’re struggling and just want to become less troubled. It’s not unreasonable to think that the psychological sciences would hold the answers to your questions, and the truth is, they somewhat do. There is more research being done in the field than ever before, focusing on an incredibly wide range of questions. This is all great, of course, but the yields of psychological research don’t always have the certainty the word “answer” is associated with. In fact, you might find yourself swimming in a sea of studies, each with their own nuanced findings, often contradicting one another, leaving you with more questions than answers. You might even begin to feel like you’re piecing together a puzzle where the pieces don’t quite fit, a frustrating exercise in academic whack-a-mole where for every theory you pin down, two more pop up in its place. And just when you think you’ve grasped the complexities of, say, the impact of social media on adolescent development, you’ll stumble upon a dozen studies offering conflicting conclusions, each with their own methodological problems, assumptions and limitations.&lt;/p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;images/qlora.jpeg&quot; alt=&quot;QLoRA Diagram&quot; /&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Of course again, this is what science is. Conflicting studies and opinions are a natural part of the process but Psychology doesn’t have great ways to settle these debates. A major cause of this is that psychology deals with complex systems maybe even &lt;em&gt;too complex&lt;/em&gt;. The human mind, is a dynamic and ever-changing system, influenced by a myriad of factors, both internal and external and we don’t have a lot of great ways to study it. It’s chaotic. Neurons firing, hormones surging, and visions and memories from past shaping our perceptions and behaviors. Ultimately psychology often finds itself grappling with messy, multifaceted phenomena that defy easy categorization. This however, isn’t to say that the pursuit of psychological knowledge is futile. There are undoubtedly valuable insights that come from the field, but perhaps we need to temper our expectations and acknowledge that the neat, definitive answers we seek may be elusive in isolation.&lt;/p&gt;
+&lt;p&gt;QLoRA is a technique designed to fine-tune large language models efficiently. By utilizing low-rank adaptation matrices and 4-bit quantized model weights, QLoRA allows for fine-tuning of originally very large language models on even consumer-grade hardware. This process uses quantization, which reduces the precision of the model weights (from 32-bit to 4-bit), making it possible to fine-tune large models on less powerful hardware without sacrificing much performance. The model retains most of the original model’s capabilities while learning new abilities from the fine-tuning dataset, which in this case is a supervised-instruction dataset.&lt;/p&gt;
 
-&lt;p&gt;This maybe is best represented by the replication crisis. In 2015, the Reproducibility Project: Psychology, a large-scale collaborative effort, attempted to replicate 100 studies published in top psychology journals. The results were alarming, with only around 40% of the studies successfully replicated. This, however, isn’t psychology’s first dance with problematic research practices biting back. The field has a history of grappling with methodological issues and questionable research practices, dating back to the early days of social psychology in the mid-20th century. From the methodological limitations of influential studies like the Milgram obedience experiments and the Stanford Prison Experiment to the more recent controversies surrounding priming effects and implicit bias, psychology has consistently faced challenges in ensuring the replicability and generalizability of its findings. These recurring struggles underscore the ongoing need for critical self-reflection and a continued push towards greater methodological rigor within the field.&lt;/p&gt;
+&lt;p&gt;In this case study, I focused on 3 different use cases for the fine-tuned models:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Low-shot code generation (Model 1)&lt;/li&gt;
+  &lt;li&gt;Debugging of common mistakes (Model 1)&lt;/li&gt;
+  &lt;li&gt;Finding relevant information from a knowledge base (Model 2)&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h2 id=&quot;psychology-does-not-need-psychologists&quot;&gt;Psychology does not need psychologists&lt;/h2&gt;
+&lt;p&gt;In the next section, I’ll discuss the results of the first two use cases.&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Psychology has made a lot less progress than it could have because too many psychologists know too little about other animals - Steve Stewart Williams&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h1 id=&quot;results-model-1&quot;&gt;Results Model 1&lt;/h1&gt;
 
-&lt;p&gt;When considering the failings of psychology, it’s easy to feel disheartened, especially given the field’s history and the perceived lack of significant findings in recent decades. However, this isn’t a hopeless situation, nor is it a signal of impending doom for the discipline. Instead, it suggests that change is necessary, and this change should start with how we educate future psychologists. Psychology students should be encouraged to adopt a more interdisciplinary approach, integrating insights from fields like physics, neuroscience, biology, computer science, and even philosophy. By broadening their perspectives and learning from other disciplines, students can develop a more holistic understanding of the mind and behavior, enabling them to tackle complex psychological questions with greater depth and nuance. If psychology is the study of something as deeply complex as human behavior, we must train young scientists to approach it with broad, interdisciplinary perspectives.&lt;/p&gt;
+&lt;p&gt;Our first task was few-shot, prompted, accurate code generation. The model was required to generate correct and functional code with minimal input and iterative prompting. The challenge was to see how well Model 1, the fine-tuned Gemma 2 model, performed compared to flagship models in generating code for PsychoPy experiments from difficult prompts. We asked the models to set up three simple yet essential psychology experiments:&lt;/p&gt;
 
-&lt;p&gt;So if you are considering psychology as your major, if you want answers to your questions, do study psychology, but I would also greatly encourage you to take a step back and explore other fields. Immerse yourself in biology, delve into neuroscience, grapple with philosophy, and embrace the logic of computer science. Don’t limit yourself to the traditional boundaries of psychology. By forging connections between disciplines, you will be better equipped to contribute meaningfully to the future of psychological understanding. While psychology has faced challenges in providing definitive answers and has, at times, repeated past mistakes, but then again maybe that’s all about to change.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Visual Search Task&lt;/strong&gt;: A task where participants search for a target item among distractors.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Stroop Task&lt;/strong&gt;: A cognitive task that requires participants to name the color of a word while ignoring the word itself, which may spell a conflicting color.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reaction Time Task&lt;/strong&gt;: Measuring the time it takes for participants to respond to a visual stimulus.&lt;/p&gt;
+
+&lt;p&gt;For all these tasks, there were specific details to implement, such as:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Colors&lt;/strong&gt;: The precise color specifications for stimuli in each task (e.g., different colors for target and distractor items in the Visual Search Task, color-word pairs in the Stroop Task).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Positions&lt;/strong&gt;: The exact placement of stimuli on the screen (e.g., random but controlled positions for the Visual Search Task, fixed central positions for the Stroop and Reaction Time Tasks).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Timing&lt;/strong&gt;: The timing parameters for stimulus presentation and response windows.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Results were judged on the accuracy of the initial response by myself and fellow Senior and Graduate students from Bilkent University Neuroscience &amp;amp; Psychology programs.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;zoomable-plot-image&quot; src=&quot;images/plot1.png&quot; alt=&quot;Plot 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Continuing from the previous section on code generation, the second use case involved debugging faulty code. This task is arguably the most important, as even small mistakes in code can lead to significant issues in psychological experiments. For this task, Model 1 was given snippets of PsychoPy code along with error messages, and its ability to diagnose and correct the errors was tested across 30 different cases, with 15 in each category. Again, this was a one-shot task, meaning the models had only one chance to fix the mistakes in the snippets. Errors were categorized into two general types:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Logical &amp;amp; Runtime Errors&lt;/strong&gt;: These errors occur when the code runs but produces unintended behavior or crashes during execution. They can be tricky to spot, as they involve mistakes in the logic of the code, such as incorrect conditional statements, timing issues, or improperly initialized variables.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Syntax &amp;amp; Compile-time Errors&lt;/strong&gt;: These errors prevent the code from running at all due to mistakes in the code’s structure, such as missing punctuation, incorrect indentation, or invalid function calls. These are generally easier to identify.&lt;/p&gt;
+
+&lt;p&gt;Results were judged by myself based on whether the mistake was fixed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;zoomable-plot-image&quot; src=&quot;images/plot2.png&quot; alt=&quot;Plot 2&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;retrieval-augmented-generation-and-knowledge-bases&quot;&gt;Retrieval-Augmented Generation and Knowledge Bases&lt;/h1&gt;
+
+&lt;p&gt;One issue I commonly face with flagship LLMs is that they sometimes generate parameters, functions, or other information that might be related to the query but are entirely made up. These are known as hallucinations. While the hallucination problem has significantly improved over the last few years, it remains a common issue, particularly when responding to queries with uncommon representation in the LLM’s training data, such as PsychoPy documentation. Retrieval-Augmented Generation (RAG) offers a solution to this problem. Although not perfect, it significantly reduces the frequency of hallucinations by ensuring that relevant information is pulled from a knowledge base and used to augment the response. Therefore, if you set up your RAG system well, it can alleviate these issues and provide relevant information in a more complete fashion.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;images/rag.png&quot; alt=&quot;RAG Diagram&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’ve implemented a fine-tuned Gemma 2 27B model with a RAG system. While RAG frameworks can be complex, I believe our recent iterations have resulted in a well-functioning system. To evaluate its effectiveness, I designed 6 questions to assess the model’s understanding of PsychoPy documentation, best practices, and key features &amp;amp; concepts. These questions focused on clear and complete explanations in text rather than generating code. The quality of the responses was then evaluated by Bilkent Neuroscience &amp;amp; Psychology students.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;zoomable-plot-image&quot; src=&quot;images/plot3.png&quot; alt=&quot;Plot 3&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;This case study highlights the significant value of fine-tuning and Retrieval-Augmented Generation (RAG) for specialized use cases. While not exhaustive in addressing every potential challenge with the PsychoPy library, it convincingly demonstrates that with a sufficiently large and high-quality dataset, even relatively smaller fine-tuned LLMs (Gemma 2 27B isn’t small, but it’s quantized to 4-bit and is still much smaller compared to flagship models) can outperform state-of-the-art models. The success observed with RAG further underscores this point.&lt;/p&gt;
+
+&lt;p&gt;I also wanted to format this case study to reflect the average student’s experience with LLMs. If you are unfamiliar with LLM research, chances are you’re not employing advanced prompting techniques like few-shot reasoning or chain-of-thought prompting, so with 1-shot hard prompts, I believe this case study maps well onto the average experience of a non-technical undergrad/grad student interacting with LLMs.&lt;/p&gt;
+
+&lt;p&gt;Moreover, I believe there is potential for relatively small, specialized LLMs to be used in class settings or with released libraries, especially if one has the resources for full fine-tuning. Of course, these LLMs will still occasionally hallucinate or make errors, but considering that students already use models prone to even greater inaccuracies, fine-tuned, specialized models could offer a more reliable alternative, especially in classroom settings or for publicly available libraries/frameworks that aren’t well represented in the training data of state-of-the-art models.&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading, and thank you to all who participated in rating from all over the world! If you’re curious about the process or capabilities, I will make everything about this project (except the data to avoid any potential legal toe-stepping) open source in the upcoming days:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You’ll be able to find the two models used on my HuggingFace account.&lt;/li&gt;
+  &lt;li&gt;The RAG notebooks I used will be available on my GitHub.&lt;/li&gt;
+&lt;/ul&gt;
+
 </description>
-                <pubDate>Sat, 24 Aug 2024 00:00:00 +0300</pubDate>
-                <link>http://localhost:4000/Why-to-(or-not-to)-study-psychology</link>
-                <guid isPermaLink="true">http://localhost:4000/Why-to-(or-not-to)-study-psychology</guid>
+                <pubDate>Thu, 05 Sep 2024 00:00:00 +0300</pubDate>
+                <link>http://localhost:4000/Qlora-and-RAG-case-study-on-PsychoPy-with-Gemma-2-Model-family</link>
+                <guid isPermaLink="true">http://localhost:4000/Qlora-and-RAG-case-study-on-PsychoPy-with-Gemma-2-Model-family</guid>
                 
-                <category>Psychology</category>
+                <category>ML</category>
+                
+                <category>LLMs</category>
                 
                 
             </item>
@@ -48,7 +113,7 @@
                 <title>Why to (or not to) study Psychology</title>
                 <description>&lt;p&gt;As the admissions period in Türkiye draws to a close, I would like to share my own 2 cents on the appeals and shortcomings of the field of psychology and of psychology education, drawing from my own four years at one of the country’s elite universities.&lt;/p&gt;
 
-&lt;h2 id=&quot;dont-expect-answers-ye-who-enter-here&quot;&gt;Don’t expect answers ye who enter here&lt;/h2&gt;
+&lt;h2 id=&quot;its-not-quite-what-you-might-think&quot;&gt;It’s Not Quite What You Might Think&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Psychology focuses on the most important topic there is: Us. - Paul Bloom&lt;/p&gt;
@@ -58,7 +123,7 @@
 
 &lt;p&gt;Of course again, this is what science is. Conflicting studies and opinions are a natural part of the process but Psychology doesn’t have great ways to settle these debates. A major cause of this is that psychology deals with complex systems maybe even &lt;em&gt;too complex&lt;/em&gt;. The human mind, is a dynamic and ever-changing system, influenced by a myriad of factors, both internal and external and we don’t have a lot of great ways to study it. It’s chaotic. Neurons firing, hormones surging, and visions and memories from past shaping our perceptions and behaviors. Ultimately psychology often finds itself grappling with messy, multifaceted phenomena that defy easy categorization. This however, isn’t to say that the pursuit of psychological knowledge is futile. There are undoubtedly valuable insights that come from the field, but perhaps we need to temper our expectations and acknowledge that the neat, definitive answers we seek may be elusive in isolation.&lt;/p&gt;
 
-&lt;p&gt;This maybe is best represented by the replication crisis. In 2015, the Reproducibility Project: Psychology, a large-scale collaborative effort, attempted to replicate 100 studies published in top psychology journals. The results were alarming, with only around 40% of the studies successfully replicated. This, however, isn’t psychology’s first dance with problematic research practices biting back. The field has a history of grappling with methodological issues and questionable research practices, dating back to the early days of social psychology in the mid-20th century. From the methodological limitations of influential studies like the Milgram obedience experiments and the Stanford Prison Experiment to the more recent controversies surrounding priming effects and implicit bias, psychology has consistently faced challenges in ensuring the replicability and generalizability of its findings. These recurring struggles underscore the ongoing need for critical self-reflection and a continued push towards greater methodological rigor within the field.&lt;/p&gt;
+&lt;p&gt;This may be best represented by the replication crisis. In 2015, the Reproducibility Project: Psychology, a large-scale collaborative effort, attempted to replicate 100 studies published in top psychology journals. The results were alarming, with only around 40% of the studies successfully replicated. This, however, isn’t psychology’s first dance with problematic research practices biting back. The field has a history of grappling with methodological issues and questionable research practices, dating back to the early days of social psychology in the mid-20th century. From the methodological limitations of influential studies like the Milgram obedience experiments and the Stanford Prison Experiment to the more recent controversies surrounding priming effects and implicit bias, psychology has consistently faced challenges in ensuring the replicability and generalizability of its findings. These recurring struggles underscore the ongoing need for critical self-reflection and a continued push toward greater methodological rigor within the field.&lt;/p&gt;
 
 &lt;h2 id=&quot;psychology-does-not-need-psychologists&quot;&gt;Psychology does not need psychologists&lt;/h2&gt;
 
@@ -66,9 +131,9 @@
   &lt;p&gt;Psychology has made a lot less progress than it could have because too many psychologists know too little about other animals - Steve Stewart Williams&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;When considering the failings of psychology, it’s easy to feel disheartened, especially given the field’s history and the perceived lack of significant findings in recent decades. However, this isn’t a hopeless situation, nor is it a signal of impending doom for the discipline. Instead, it suggests that change is necessary, and this change should start with how we educate future psychologists. Psychology students should be encouraged to adopt a more interdisciplinary approach, integrating insights from fields like physics, neuroscience, biology, computer science, and even philosophy. By broadening their perspectives and learning from other disciplines, students can develop a more holistic understanding of the mind and behavior, enabling them to tackle complex psychological questions with greater depth and nuance. If psychology is the study of something as deeply complex as human behavior, we must train young scientists to approach it with broad, interdisciplinary perspectives.&lt;/p&gt;
+&lt;p&gt;When considering the shortcomings of psychology, it’s easy to feel disheartened, especially given the field’s history and the perceived lack of significant findings in recent decades. However, this isn’t a sign of hopelessness or impending doom for the discipline. Instead, it highlights the need for change and that change should begin with how we educate future psychologists. Psychologists must rise to the complexities of the questions they ask rather than being taught with a rigid adherence to outdated methods. The field should embrace a more interdisciplinary approach, integrating insights from other fields such as statistics, philosophy, biology, and computer science to foster a deeper understanding of human behavior. This shift in education would not only equip future psychologists with the tools to tackle complex issues but also encourage innovation, which the field desperately needs. By focusing on the process of inquiry—how we ask questions, design studies, and interpret data—rather than finding comfort in how it is traditionally done, we can cultivate a more resilient and adaptive discipline. Ultimately, psychology is a very young science. Its glory lies not in its past achievements but in its ability to evolve and address the ever-changing landscape of human experience, ask ambitious questions, and try to answer them with rigor rather than running towards easy answers. To do so, we must cultivate knowledge that doesn’t classically doesn’t come from a psychology education. To try to answer fundamentally complex questions of human behavior researchers themselves must match those complexities.&lt;/p&gt;
 
-&lt;p&gt;So if you are considering psychology as your major, if you want answers to your questions, do study psychology, but I would also greatly encourage you to take a step back and explore other fields. Immerse yourself in biology, delve into neuroscience, grapple with philosophy, and embrace the logic of computer science. Don’t limit yourself to the traditional boundaries of psychology. By forging connections between disciplines, you will be better equipped to contribute meaningfully to the future of psychological understanding. While psychology has faced challenges in providing definitive answers and has, at times, repeated past mistakes, but then again maybe that’s all about to change.&lt;/p&gt;
+&lt;p&gt;So, if you are considering psychology as your major and want answers to your questions, do study psychology, but I would also greatly encourage you to take a step back and explore other fields. It would be nothing short of delusional to say that psychology has good answers to the fundamental questions of human behavior, but what we &lt;em&gt;do&lt;/em&gt; have is a start. There is great research being done, and there is true progress in the field, but it’s also not uncommon to be drawn to easy, half-cooked answers in pursuit of answers to hard questions. It’s crucial to investigate the intricacies of each question and the feasibility of each answer rather than settling for superficial understanding. Psychology as a discipline has often fallen into the trap of recycling its errors in new guises, but then again, maybe it’s time for that to change.&lt;/p&gt;
 </description>
                 <pubDate>Sat, 24 Aug 2024 00:00:00 +0300</pubDate>
                 <link>http://localhost:4000/Why-to-(or-not-to)-study-psychology</link>
@@ -76,8 +141,6 @@
                 
                 <category>Psychology</category>
                 
-                
-                <category>Uyildiz12.github.io</category>
                 
             </item>
         

@@ -15,18 +15,26 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
   <link href="{{ '/assets/css/style.css' | relative_url }}" rel="stylesheet">
   <link href="{{ '/assets/css/main.css' | relative_url }}" rel="stylesheet">
+  <!-- Add lightbox CSS -->
+  <link href="{{ '/assets/css/lightbox.css' | relative_url }}" rel="stylesheet">
 </head>
 <body>
+  <div class="inner">
+    {% include header2.html %}
+    {{content}}
+  </div><!-- .inner -->
+  {% include footer.html %}
 
-    <div class="inner">
-      {% include header2.html %}
-      {{content}}
-    </div><!-- .inner -->
-    {% include footer.html %}
+  <!-- Add lightbox HTML -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-image">
+  </div>
 
-  
   <script src="{{ '/assets/js/plugins.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/custom.js' | relative_url }}"></script>
-
+  <script src="{{ '/assets/js/zoomable-plot.js' | relative_url }}"></script>
+  <!-- Add lightbox JavaScript -->
+  <script src="{{ '/assets/js/lightbox.js' | relative_url }}"></script>
 </body>
 </html>

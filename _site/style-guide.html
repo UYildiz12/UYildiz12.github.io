@@ -15,11 +15,12 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
   <link href="/assets/css/style.css" rel="stylesheet">
   <link href="/assets/css/main.css" rel="stylesheet">
+  <!-- Add lightbox CSS -->
+  <link href="/assets/css/lightbox.css" rel="stylesheet">
 </head>
 <body>
-
-    <div class="inner">
-      <header class="site-header">
+  <div class="inner">
+    <header class="site-header">
   
   <p class="site-title"><a class="logo-text" href="/">Umur Yıldız</a></p>
   
@@ -49,7 +50,7 @@
         
         
         <li class="menu-item ">
-          <a class="" href="/tags/">Tags</a>
+          <a class="" href="/tags">Tags</a>
         </li>
         
       </ul><!-- .menu -->
@@ -61,7 +62,7 @@
 </header>
 
 
-      <main class="main-content fadeInDown delay_075s">
+    <main class="main-content fadeInDown delay_075s">
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">Style Guide</h1>
@@ -248,10 +249,11 @@
 </table>
 
     </div><!-- .post-content -->
+    <script src="/assets/js/zoomable-plot.js"></script>
   </article><!-- .post -->
 </main><!-- .site-main -->
-    </div><!-- .inner -->
-    <footer class="footer">
+  </div><!-- .inner -->
+  <footer class="footer">
   <div class="footer-content">
     <p>Umur Yıldız</p>
     <div class="footer-icons">
@@ -265,9 +267,16 @@
 <script src="/assets/js/sweet-scroll.min.js"></script>
 <script src="/assets/js/main.js"></script>
 
-  
+  <!-- Add lightbox HTML -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-image">
+  </div>
+
   <script src="/assets/js/plugins.js"></script>
   <script src="/assets/js/custom.js"></script>
-
+  <script src="/assets/js/zoomable-plot.js"></script>
+  <!-- Add lightbox JavaScript -->
+  <script src="/assets/js/lightbox.js"></script>
 </body>
 </html>
