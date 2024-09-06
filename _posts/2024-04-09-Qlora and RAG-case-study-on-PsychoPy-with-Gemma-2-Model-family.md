@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "QLoRA and RAG Case Study on PsychoPy with Gemma 2 27B"
-description: "A case study on "
+description: "A case study on how specilized LLMs can help students code"
 date: 2024-09-05
 feature_image: images/FT.jpeg
 tags: [ML, LLMs]
