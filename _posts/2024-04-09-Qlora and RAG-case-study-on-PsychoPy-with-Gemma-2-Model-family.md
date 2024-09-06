@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "QLoRA and RAG Case Study on PsychoPy with Gemma 2 27B"
-description: "A discussion on psychological education"
+description: "A case study on "
 date: 2024-09-05
 feature_image: images/FT.jpeg
 tags: [ML, LLMs]
