@@ -5,8 +5,8 @@
         <description>Personal Site</description>
         <link>http://localhost:4000/</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 05 Sep 2024 21:13:19 +0300</pubDate>
-        <lastBuildDate>Thu, 05 Sep 2024 21:13:19 +0300</lastBuildDate>
+        <pubDate>Fri, 06 Sep 2024 07:57:41 +0300</pubDate>
+        <lastBuildDate>Fri, 06 Sep 2024 07:57:41 +0300</lastBuildDate>
         <generator>Jekyll v3.9.5</generator>
         
             <item>
@@ -15,7 +15,7 @@
 
 &lt;h1 id=&quot;code-generation-and-debugging&quot;&gt;Code Generation and Debugging&lt;/h1&gt;
 
-&lt;p&gt;A common problem, which I’ve experienced and heard from others, is that even flagship LLMs struggle with low-shot, accurate code generation for psychological experiments. This issue extends to automatic code completion tools like Copilot and Cursor. One feasible solution I found is to fine-tune a capable open-source model with QLoRA for our very specific task of generating psychology experiments.&lt;/p&gt;
+&lt;p&gt;A common problem, which I’ve experienced and heard from others, is that even flagship LLMs struggle with zero-shot, accurate code generation for psychological experiments. This issue extends to automatic code completion tools like Copilot and Cursor. One feasible solution I found is to fine-tune a capable open-source model with QLoRA for our very specific task of generating psychology experiments.&lt;/p&gt;
 
 &lt;div style=&quot;text-align: center;&quot;&gt;
   &lt;img src=&quot;images/qlora.jpeg&quot; alt=&quot;QLoRA Diagram&quot; /&gt;
@@ -25,7 +25,7 @@
 
 &lt;p&gt;In this case study, I focused on 3 different use cases for the fine-tuned models:&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;Low-shot code generation (Model 1)&lt;/li&gt;
+  &lt;li&gt;zero-shot code generation (Model 1)&lt;/li&gt;
   &lt;li&gt;Debugging of common mistakes (Model 1)&lt;/li&gt;
   &lt;li&gt;Finding relevant information from a knowledge base (Model 2)&lt;/li&gt;
 &lt;/ol&gt;
@@ -34,7 +34,7 @@
 
 &lt;h1 id=&quot;results-model-1&quot;&gt;Results Model 1&lt;/h1&gt;
 
-&lt;p&gt;Our first task was few-shot, prompted, accurate code generation. The model was required to generate correct and functional code with minimal input and iterative prompting. The challenge was to see how well Model 1, the fine-tuned Gemma 2 model, performed compared to flagship models in generating code for PsychoPy experiments from difficult prompts. We asked the models to set up three simple yet essential psychology experiments:&lt;/p&gt;
+&lt;p&gt;Our first task was zero-shot, prompted, accurate code generation. The model was required to generate correct and functional code with minimal input and iterative prompting. The challenge was to see how well Model 1, the fine-tuned Gemma 2 model, performed compared to flagship models in generating code for PsychoPy experiments from difficult prompts. We asked the models to set up three simple yet essential psychology experiments:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Visual Search Task&lt;/strong&gt;: A task where participants search for a target item among distractors.&lt;/p&gt;
 
@@ -60,7 +60,7 @@
 
 &lt;p&gt;&lt;img class=&quot;zoomable-plot-image&quot; src=&quot;images/plot1.png&quot; alt=&quot;Plot 1&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Continuing from the previous section on code generation, the second use case involved debugging faulty code. This task is arguably the most important, as even small mistakes in code can lead to significant issues in psychological experiments. For this task, Model 1 was given snippets of PsychoPy code along with error messages, and its ability to diagnose and correct the errors was tested across 30 different cases, with 15 in each category. Again, this was a one-shot task, meaning the models had only one chance to fix the mistakes in the snippets. Errors were categorized into two general types:&lt;/p&gt;
+&lt;p&gt;Continuing from the previous section on code generation, the second use case involved debugging faulty code. This task is arguably the most important, as even small mistakes in code can lead to significant issues in psychological experiments. For this task, Model 1 was given snippets of PsychoPy code along with error messages, and its ability to diagnose and correct the errors was tested across 30 different cases, with 15 in each category. Again, this was a zero-shot task hard-prompted, meaning the models had only one chance to fix the mistakes in the snippets with no further context than the prompt. Errors were categorized into two general types:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Logical &amp;amp; Runtime Errors&lt;/strong&gt;: These errors occur when the code runs but produces unintended behavior or crashes during execution. They can be tricky to spot, as they involve mistakes in the logic of the code, such as incorrect conditional statements, timing issues, or improperly initialized variables.&lt;/p&gt;
 
@@ -86,7 +86,7 @@
 
 &lt;p&gt;This case study highlights the significant value of fine-tuning and Retrieval-Augmented Generation (RAG) for specialized use cases. While not exhaustive in addressing every potential challenge with the PsychoPy library, it convincingly demonstrates that with a sufficiently large and high-quality dataset, even relatively smaller fine-tuned LLMs (Gemma 2 27B isn’t small, but it’s quantized to 4-bit and is still much smaller compared to flagship models) can outperform state-of-the-art models. The success observed with RAG further underscores this point.&lt;/p&gt;
 
-&lt;p&gt;I also wanted to format this case study to reflect the average student’s experience with LLMs. If you are unfamiliar with LLM research, chances are you’re not employing advanced prompting techniques like few-shot reasoning or chain-of-thought prompting, so with 1-shot hard prompts like “Code a visual search task where target is t and distractors are a”, I believe this case study maps well onto the average experience of a non-technical undergrad/grad student interacting with LLMs.&lt;/p&gt;
+&lt;p&gt;I also wanted to format this case study to reflect the average student’s experience with LLMs. If you are unfamiliar with LLM research, chances are you’re not employing advanced prompting techniques like few-shot reasoning or chain-of-thought prompting, so with zero-shot hard prompts like “Code a visual search task where target is t and distractors are a”, I believe this case study maps well onto the average experience of a non-technical undergrad/grad student interacting with LLMs.&lt;/p&gt;
 
 &lt;p&gt;Moreover, I believe there is potential for relatively small, specialized LLMs to be used in class settings or with released libraries, especially if one has the resources for full fine-tuning. Of course, these LLMs will still occasionally hallucinate or make errors, but considering that students already use models prone to even greater inaccuracies, fine-tuned, specialized models could offer a more reliable alternative, especially in classroom settings or for publicly available libraries/frameworks that aren’t well represented in the training data of state-of-the-art models.&lt;/p&gt;
 
