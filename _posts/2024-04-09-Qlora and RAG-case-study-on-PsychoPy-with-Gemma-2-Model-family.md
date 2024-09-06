@@ -65,7 +65,7 @@ One issue I commonly face with flagship LLMs is that they sometimes generate par
   <img src="images/rag.png" alt="RAG Diagram">
 </div>
 
-I've implemented a fine-tuned Gemma 2 27B model with a RAG system. While RAG frameworks can be complex, I believe our recent iterations have resulted in a well-functioning system. To evaluate its effectiveness, I designed 6 questions to assess the model's understanding of PsychoPy documentation, best practices, and key features & concepts. These questions focused on clear and complete explanations in text rather than generating code. The quality of the responses was then evaluated by Bilkent Neuroscience & Psychology students.
+I've implemented a fine-tuned Gemma 2 27B model with a RAG system. While RAG frameworks can be complex, I believe our recent iterations have resulted in a well-functioning system. To evaluate its effectiveness, I designed 6 questions to assess the model's understanding of PsychoPy documentation, best practices, and key features & concepts. These questions focused on clear and complete explanations in text rather than generating code. The quality of the responses was then evaluated by students from Psychology & Neuroscience programs over the world.
 
 <img class="zoomable-plot-image" src="images/plot3.png" alt="Plot 3">
 
