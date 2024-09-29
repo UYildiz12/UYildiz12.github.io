@@ -77,8 +77,5 @@ I also wanted to format this case study to reflect the average student's experie
 
 Moreover, I believe there is potential for relatively small, specialized LLMs to be used in class settings or with released libraries, especially if one has the resources for full fine-tuning. Of course, these LLMs will still occasionally hallucinate or make errors, but considering that students already use models prone to even greater inaccuracies, fine-tuned, specialized models could offer a more reliable alternative, especially in classroom settings or for publicly available libraries/frameworks that aren't well represented in the training data of state-of-the-art models.
 
-Thank you for reading, and thank you to all who participated in rating from all over the world! If you're curious about the process or capabilities, I will make everything about this project (except the data to avoid any potential legal toe-stepping) open source in the upcoming days:
-
-- You’ll be able to find the two models used on my HuggingFace account.
-- The RAG notebooks I used will be available on my GitHub.
+Thank you for reading, and thank you to all who participated in rating from all over the world! You can try out the fine-tuned model for yourself if you'd like in 4 and 8 bit quantized GGUF forms.
 
