@@ -71,7 +71,7 @@ I've implemented a fine-tuned Gemma 2 27B model with a RAG system. While RAG fra
 
 # Conclusions
 
-This case study highlights the significant value of fine-tuning and Retrieval-Augmented Generation (RAG) for specialized use cases. While not exhaustive in addressing every potential challenge with the PsychoPy library, it convincingly demonstrates that with a sufficiently large and high-quality dataset, even relatively smaller fine-tuned LLMs (Gemma 2 27B isn't small, but it’s quantized to 4-bit and is still much smaller compared to flagship models) can outperform state-of-the-art models. The success observed with RAG further underscores this point.
+This case study highlights the significant value of fine-tuning and Retrieval-Augmented Generation (RAG) for specialized use cases. While not exhaustive in addressing every potential challenge with the PsychoPy library, it convincingly demonstrates that with a sufficiently large and high-quality dataset, even relatively smaller fine-tuned LLMs (Gemma 2 27B isn't small, but it’s quantized to 4-bit and is still much smaller compared to flagship models) can outperform state-of-the-art models on spesific tasks (like 0-shot psychopy code generation). The success observed with RAG further underscores this point.
 
 I also wanted to format this case study to reflect the average student's experience with LLMs. If you are unfamiliar with LLM research, chances are you’re not employing advanced prompting techniques like few-shot reasoning or chain-of-thought prompting, so with zero-shot hard prompts like "Code a visual search task where target is t and distractors are a", I believe this case study maps well onto the average experience of a non-technical undergrad/grad student interacting with LLMs.
 
@@ -81,4 +81,4 @@ Thank you for reading, and thank you to all who participated in rating from all 
 
 Edit 29.09 2024: You can now try out the improved fine-tuned model for yourself if you'd like in 4 and 8 bit quantized GGUF forms on [Hugging Face](https://huggingface.co/Iuda/Gemma2_27b_QLORA_Psychopy). If you'd like to try it out with no gpu access --> Can use this [llama.cpp collab notebook](https://colab.research.google.com/drive/1aI0K9i3u-Y9eIOh1oOZW4b3uLHxo4PmV?usp=sharing) and if you have gpu access or collab pro --> [unsloth notebook](https://colab.research.google.com/drive/136VYE8khISqfx5DeVW3vHB-69PMWDbBf?usp=sharing)
 
-An upgraded RAG framework on PsychoPy documentation with notebook coming soon™(as soon as i find more hobby-project time) as well.
+An upgraded RAG framework with LangChain on PsychoPy documentation notebook coming soon™(as soon as i find more hobby-project time) as well.
