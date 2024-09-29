@@ -16,7 +16,7 @@ A common problem, which I’ve experienced and heard from others, is that even f
   <img src="images/qlora.jpeg" alt="QLoRA Diagram">
 </div>
 
-QLoRA is a technique designed to fine-tune large language models efficiently. By utilizing low-rank adaptation matrices and 4-bit quantized model weights, QLoRA allows for fine-tuning of originally very large language models on even consumer-grade hardware. This process uses quantization, which reduces the precision of the model weights (from 32-bit to 4-bit), making it possible to fine-tune large models on less powerful hardware without sacrificing much performance. The model retains most of the original model's capabilities while learning new abilities from the fine-tuning dataset, which in this case is a supervised-instruction dataset.
+QLoRA is a technique designed to fine-tune large language models efficiently. By utilizing low-rank adaptation matrices and quantizing model weights to 4-bit, while keeping activations and gradients in higher precision, QLoRA allows efficient fine-tuning of originally very large language models on even consumer-grade hardware. This process uses quantization, which reduces the precision of the model weights (from 32-bit to 4-bit), making it possible to fine-tune large models on less powerful hardware without sacrificing much performance. The model retains most of the original model's capabilities while learning new abilities from the fine-tuning dataset, which in this case is a supervised-instruction dataset.
 
 In this case study, I focused on 3 different use cases for the fine-tuned models:
 1. zero-shot code generation (Model 1)
@@ -59,13 +59,13 @@ Results were judged by myself based on whether the mistake was fixed.
 
 # Retrieval-Augmented Generation and Knowledge Bases
 
-One issue I commonly face with flagship LLMs is that they sometimes generate parameters, functions, or other information that might be related to the query but are entirely made up. These are known as hallucinations. While the hallucination problem has significantly improved over the last few years, it remains a common issue, particularly when responding to queries with uncommon representation in the LLM's training data, such as PsychoPy documentation. Retrieval-Augmented Generation (RAG) offers a solution to this problem. Although not perfect, it significantly reduces the frequency of hallucinations by ensuring that relevant information is pulled from a knowledge base and used to augment the response. Therefore, if you set up your RAG system well, it can alleviate these issues and provide relevant information in a more complete fashion.
+One issue I commonly face with flagship LLMs is that they sometimes generate parameters, functions, or other information that might be related to the query but are entirely made up. These are known as hallucinations. While the hallucination problem has significantly improved over the last few years, it remains a common issue, particularly when responding to queries with uncommon representation in the LLM's training data, such as PsychoPy documentation. Retrieval-Augmented Generation (RAG) offers a solution to this problem. Although not perfect, it significantly reduces the frequency of hallucinations by ensuring that relevant information is pulled from an external source such as a document store or a knowledge base and used to augment the response. This ensures that responses are grounded in the retrieved information. Therefore, if you set up your RAG system well, it can alleviate these issues and provide relevant information in a more complete fashion.
 
 <div style="text-align: center;">
   <img src="images/rag.png" alt="RAG Diagram">
 </div>
 
-I've implemented a fine-tuned Gemma 2 27B model with a RAG system. While RAG frameworks can be complex, I believe our recent iterations have resulted in a well-functioning system. To evaluate its effectiveness, I designed 6 questions to assess the model's understanding of PsychoPy documentation, best practices, and key features & concepts. These questions focused on clear and complete explanations in text rather than generating code. The quality of the responses was then evaluated by students from Psychology & Neuroscience programs over the world.
+I've implemented a fine-tuned Gemma 2 27B model with a RAG system. While RAG frameworks can be complex, I believe more recent iterations have resulted in a well-functioning system. To evaluate its effectiveness, I designed 6 questions to assess the model's understanding of PsychoPy documentation, best practices, and key features & concepts. These questions focused on clear and complete explanations in text rather than generating code. The quality of the responses was then evaluated by students from Psychology & Neuroscience programs over the world.
 
 <img class="zoomable-plot-image" src="images/plot3.png" alt="Plot 3">
 
@@ -77,5 +77,8 @@ I also wanted to format this case study to reflect the average student's experie
 
 Moreover, I believe there is potential for relatively small, specialized LLMs to be used in class settings or with released libraries, especially if one has the resources for full fine-tuning. Of course, these LLMs will still occasionally hallucinate or make errors, but considering that students already use models prone to even greater inaccuracies, fine-tuned, specialized models could offer a more reliable alternative, especially in classroom settings or for publicly available libraries/frameworks that aren't well represented in the training data of state-of-the-art models.
 
-Thank you for reading, and thank you to all who participated in rating from all over the world! You can try out the fine-tuned model for yourself if you'd like in 4 and 8 bit quantized GGUF forms.
+Thank you for reading, and thank you to all who participated in rating from all over the world!
 
+Edit 29.09 2024: You can now try out the improved fine-tuned model for yourself if you'd like in 4 and 8 bit quantized GGUF forms on [Hugging Face](https://huggingface.co/Iuda/Gemma2_27b_QLORA_Psychopy). If you'd like to try it out with no gpu access --> Can use this [llama.cpp collab notebook](https://colab.research.google.com/drive/1aI0K9i3u-Y9eIOh1oOZW4b3uLHxo4PmV?usp=sharing) and if you have gpu access or collab pro --> [unsloth notebook](https://colab.research.google.com/drive/136VYE8khISqfx5DeVW3vHB-69PMWDbBf?usp=sharing)
+
+An upgraded RAG framework on PsychoPy documentation with notebook coming soon™(as soon as i find more hobby-project time) as well.
